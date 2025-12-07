@@ -1,0 +1,23 @@
+# Security Headers for Netlify/Cloudflare Pages Deployment
+# GitHub Pages does NOT support custom headers - these only work on Netlify/Vercel/Cloudflare
+# 
+# To use: Deploy to Netlify or Cloudflare Pages instead of GitHub Pages
+
+/*
+  # Prevent clickjacking attacks
+  X-Frame-Options: DENY
+  
+  # Prevent MIME type sniffing
+  X-Content-Type-Options: nosniff
+  
+  # Control referrer information
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Restrict browser features
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+  
+  # Content Security Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://formsubmit.co; upgrade-insecure-requests;
+  
+  # Enable HSTS (only enable after confirming HTTPS works)
+  # Strict-Transport-Security: max-age=31536000; includeSubDomains; preload

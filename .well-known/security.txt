@@ -1,0 +1,10 @@
+# Dysruption Enterprises Security Policy
+# https://securitytxt.org/
+
+Contact: mailto:security@dysruption.io
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://dysruption.github.io/.well-known/security.txt
+
+# If you discover a security vulnerability, please report it responsibly.
+# We appreciate your efforts to improve our security.

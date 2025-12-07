@@ -5,7 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dysruption Enterprises | Forge The Future</title>
     
-    <!-- Security Headers (Meta Tag CSP for Static Sites) -->
+    <!-- 
+    ============================================================
+    SECURITY HEADERS DOCUMENTATION
+    ============================================================
+    
+    IMPORTANT: GitHub Pages Limitations
+    - GitHub Pages does NOT allow custom HTTP headers
+    - frame-ancestors and X-Frame-Options ONLY work as HTTP headers
+    - Clickjacking protection requires server-side headers or _headers file (Netlify/Cloudflare)
+    
+    MITIGATION: If moving to Netlify/Vercel, add _headers file:
+    /*
+      X-Frame-Options: DENY
+      X-Content-Type-Options: nosniff
+      Referrer-Policy: strict-origin-when-cross-origin
+      Permissions-Policy: camera=(), microphone=(), geolocation=()
+      Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; object-src 'none'; base-uri 'self'; form-action 'self';
+    
+    Current Meta CSP provides XSS protection even on GitHub Pages.
+    ============================================================
+    -->
+    
+    <!-- Content Security Policy (Meta Tag - works for most directives) -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
         script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;
@@ -13,25 +35,25 @@
         font-src 'self' https://fonts.gstatic.com;
         img-src 'self' data: https:;
         connect-src 'self';
-        frame-ancestors 'none';
+        object-src 'none';
         base-uri 'self';
         form-action 'self' https://formspree.io https://formsubmit.co;
+        upgrade-insecure-requests;
     ">
+    
+    <!-- 
+    NOTE: frame-ancestors does NOT work in meta tags (per W3C CSP spec)
+    NOTE: X-Frame-Options via meta is NOT honored by browsers
+    GitHub Pages does not support custom headers, so clickjacking protection
+    is limited. For production, use Netlify/Vercel/Cloudflare with _headers file.
+    -->
+    
+    <!-- These meta tags provide defense-in-depth but have limitations -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
     <!-- Permissions Policy (Restrict Browser Features) -->
-    <meta http-equiv="Permissions-Policy" content="
-        accelerometer=(),
-        camera=(),
-        geolocation=(),
-        gyroscope=(),
-        magnetometer=(),
-        microphone=(),
-        payment=(),
-        usb=()
-    ">
+    <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Dysruption Enterprises builds AI-native infrastructure for radical builders. Neural Codex, Hyper-Grid Infra, and Synthetic Agents—tools to forge the future.">
