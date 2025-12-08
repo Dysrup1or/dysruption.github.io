@@ -510,8 +510,8 @@
     <!-- ========================================== -->
     <!-- MODAL: Neural Codex Deep Dive -->
     <!-- ========================================== -->
-    <div id="neural-codex-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-center justify-center bg-void/95 backdrop-blur-lg overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-neural-title">
-        <div class="modal-content relative max-w-4xl mx-auto my-8 p-8 md:p-12 bg-surface-dark border border-neon-cyan/30 rounded-lg shadow-2xl shadow-neon-cyan/10">
+    <div id="neural-codex-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-start justify-center bg-void/95 backdrop-blur-lg overflow-y-auto py-8 px-4" role="dialog" aria-modal="true" aria-labelledby="modal-neural-title">
+        <div class="modal-content relative w-full max-w-4xl mx-auto p-8 md:p-12 bg-surface-dark border border-neon-cyan/30 rounded-lg shadow-2xl shadow-neon-cyan/10">
             <!-- Close Button -->
             <button onclick="closeModal('neural-codex-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-neon-cyan transition-colors" aria-label="Close modal">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -618,8 +618,8 @@
     <!-- ========================================== -->
     <!-- MODAL: Hyper-Grid Infra Deep Dive -->
     <!-- ========================================== -->
-    <div id="hyper-grid-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-center justify-center bg-void/95 backdrop-blur-lg overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-grid-title">
-        <div class="modal-content relative max-w-4xl mx-auto my-8 p-8 md:p-12 bg-surface-dark border border-neon-magenta/30 rounded-lg shadow-2xl shadow-neon-magenta/10">
+    <div id="hyper-grid-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-start justify-center bg-void/95 backdrop-blur-lg overflow-y-auto py-8 px-4" role="dialog" aria-modal="true" aria-labelledby="modal-grid-title">
+        <div class="modal-content relative w-full max-w-4xl mx-auto p-8 md:p-12 bg-surface-dark border border-neon-magenta/30 rounded-lg shadow-2xl shadow-neon-magenta/10">
             <!-- Close Button -->
             <button onclick="closeModal('hyper-grid-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-neon-magenta transition-colors" aria-label="Close modal">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -748,8 +748,8 @@
     <!-- ========================================== -->
     <!-- MODAL: Synthetic Agents Deep Dive -->
     <!-- ========================================== -->
-    <div id="synthetic-agents-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-center justify-center bg-void/95 backdrop-blur-lg overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-agents-title">
-        <div class="modal-content relative max-w-4xl mx-auto my-8 p-8 md:p-12 bg-surface-dark border border-terminal-green/30 rounded-lg shadow-2xl shadow-terminal-green/10">
+    <div id="synthetic-agents-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-start justify-center bg-void/95 backdrop-blur-lg overflow-y-auto py-8 px-4" role="dialog" aria-modal="true" aria-labelledby="modal-agents-title">
+        <div class="modal-content relative w-full max-w-4xl mx-auto p-8 md:p-12 bg-surface-dark border border-terminal-green/30 rounded-lg shadow-2xl shadow-terminal-green/10">
             <!-- Close Button -->
             <button onclick="closeModal('synthetic-agents-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-terminal-green transition-colors" aria-label="Close modal">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -1024,9 +1024,12 @@
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
                 
-                // Focus trap - focus the first focusable element
-                const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                if (focusable.length) focusable[0].focus();
+                // Scroll modal to top
+                modal.scrollTop = 0;
+                
+                // Focus trap - focus the close button for accessibility
+                const closeBtn = modal.querySelector('button[aria-label="Close modal"]');
+                if (closeBtn) closeBtn.focus();
                 
                 // Add escape key listener
                 document.addEventListener('keydown', handleEscapeKey);
