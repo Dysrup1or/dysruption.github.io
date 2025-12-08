@@ -260,6 +260,49 @@
             background: linear-gradient(135deg, rgba(57, 255, 20, 0.05) 0%, transparent 50%);
         }
         
+        /* Modal Styles */
+        .modal-overlay {
+            animation: fadeIn 0.2s ease-out;
+        }
+        
+        .modal-overlay.hidden {
+            display: none !important;
+        }
+        
+        .modal-content {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        /* Modal Scrollbar */
+        .modal-overlay::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .modal-overlay::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .modal-overlay::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+        
         /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
@@ -420,44 +463,438 @@
             <!-- Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
                 <!-- Card 1: Neural Codex -->
-                <article class="platform-card card-cyan bg-void border border-surface-dark p-8 group" role="listitem">
+                <article class="platform-card card-cyan bg-void border border-surface-dark p-8 group cursor-pointer" role="listitem" onclick="openModal('neural-codex-modal')" tabindex="0" onkeypress="if(event.key==='Enter') openModal('neural-codex-modal')">
                     <div class="mb-6" aria-hidden="true">
                         <svg class="w-12 h-12 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                         </svg>
                     </div>
                     <h3 class="font-mono text-xl font-bold text-white mb-4 group-hover:text-neon-cyan transition-colors">NEURAL CODEX</h3>
-                    <p class="text-gray-400 font-sans leading-relaxed">
+                    <p class="text-gray-400 font-sans leading-relaxed mb-4">
                         Generative architect that understands whole-system context. Code that writes itself, debugs itself, and evolves with your vision.
                     </p>
+                    <span class="font-mono text-xs text-neon-cyan opacity-60 group-hover:opacity-100 transition-opacity">[ CLICK TO EXPLORE → ]</span>
                 </article>
                 
                 <!-- Card 2: Hyper-Grid Infra -->
-                <article class="platform-card card-magenta bg-void border border-surface-dark p-8 group" role="listitem">
+                <article class="platform-card card-magenta bg-void border border-surface-dark p-8 group cursor-pointer" role="listitem" onclick="openModal('hyper-grid-modal')" tabindex="0" onkeypress="if(event.key==='Enter') openModal('hyper-grid-modal')">
                     <div class="mb-6" aria-hidden="true">
                         <svg class="w-12 h-12 text-neon-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
                         </svg>
                     </div>
                     <h3 class="font-mono text-xl font-bold text-white mb-4 group-hover:text-neon-magenta transition-colors">HYPER-GRID INFRA</h3>
-                    <p class="text-gray-400 font-sans leading-relaxed">
+                    <p class="text-gray-400 font-sans leading-relaxed mb-4">
                         Self-healing, serverless, autonomous. Infrastructure that anticipates failure before it happens and scales infinitely.
                     </p>
+                    <span class="font-mono text-xs text-neon-magenta opacity-60 group-hover:opacity-100 transition-opacity">[ CLICK TO EXPLORE → ]</span>
                 </article>
                 
                 <!-- Card 3: Synthetic Agents -->
-                <article class="platform-card card-green bg-void border border-surface-dark p-8 group" role="listitem">
+                <article class="platform-card card-green bg-void border border-surface-dark p-8 group cursor-pointer" role="listitem" onclick="openModal('synthetic-agents-modal')" tabindex="0" onkeypress="if(event.key==='Enter') openModal('synthetic-agents-modal')">
                     <div class="mb-6" aria-hidden="true">
                         <svg class="w-12 h-12 text-terminal-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                     </div>
                     <h3 class="font-mono text-xl font-bold text-white mb-4 group-hover:text-terminal-green transition-colors">SYNTHETIC AGENTS</h3>
-                    <p class="text-gray-400 font-sans leading-relaxed">
+                    <p class="text-gray-400 font-sans leading-relaxed mb-4">
                         Digital workforce that never sleeps. Autonomous agents that execute, learn, and optimize 24/7 without human intervention.
                     </p>
+                    <span class="font-mono text-xs text-terminal-green opacity-60 group-hover:opacity-100 transition-opacity">[ CLICK TO EXPLORE → ]</span>
                 </article>
             </div>
+        </div>
+    </section>
+    
+    <!-- ========================================== -->
+    <!-- MODAL: Neural Codex Deep Dive -->
+    <!-- ========================================== -->
+    <div id="neural-codex-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-center justify-center bg-void/95 backdrop-blur-lg overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-neural-title">
+        <div class="modal-content relative max-w-4xl mx-auto my-8 p-8 md:p-12 bg-surface-dark border border-neon-cyan/30 rounded-lg shadow-2xl shadow-neon-cyan/10">
+            <!-- Close Button -->
+            <button onclick="closeModal('neural-codex-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-neon-cyan transition-colors" aria-label="Close modal">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <!-- Header -->
+            <div class="flex items-center gap-4 mb-8">
+                <svg class="w-16 h-16 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                <div>
+                    <p class="font-mono text-neon-cyan text-sm">&gt; PLATFORM_MODULE_01</p>
+                    <h3 id="modal-neural-title" class="font-mono text-3xl md:text-4xl font-bold text-white">NEURAL CODEX</h3>
+                </div>
+            </div>
+            
+            <!-- What It Is -->
+            <div class="mb-8">
+                <h4 class="font-mono text-lg text-neon-cyan mb-4">// WHAT IS NEURAL CODEX?</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    Neural Codex represents the next evolution of AI-powered software engineering. Unlike traditional code assistants that offer simple autocomplete, Neural Codex is a <span class="text-neon-cyan font-semibold">generative architect</span>—an autonomous system capable of understanding entire codebases, reasoning through complex problems, and producing production-ready solutions.
+                </p>
+                <p class="text-gray-400 leading-relaxed">
+                    Inspired by breakthroughs like Cognition's Devin and advanced agentic coding systems, Neural Codex goes beyond single-file edits to orchestrate multi-file refactors, debug across system boundaries, and implement features from natural language specifications.
+                </p>
+            </div>
+            
+            <!-- Core Capabilities -->
+            <div class="mb-8">
+                <h4 class="font-mono text-lg text-neon-cyan mb-4">// CORE CAPABILITIES</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded">
+                        <h5 class="font-mono text-white font-bold mb-2">Whole-System Context</h5>
+                        <p class="text-gray-400 text-sm">Deep codebase embedding models provide complete project understanding—architecture, dependencies, patterns, and conventions.</p>
+                    </div>
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded">
+                        <h5 class="font-mono text-white font-bold mb-2">Autonomous Debugging</h5>
+                        <p class="text-gray-400 text-sm">Self-diagnoses issues, reproduces bugs, and implements fixes without human intervention. Like having a senior engineer on call 24/7.</p>
+                    </div>
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded">
+                        <h5 class="font-mono text-white font-bold mb-2">Multi-File Orchestration</h5>
+                        <p class="text-gray-400 text-sm">Coordinates changes across dozens of files simultaneously—refactoring, migrations, and feature implementations that span your entire stack.</p>
+                    </div>
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded">
+                        <h5 class="font-mono text-white font-bold mb-2">Learning & Adaptation</h5>
+                        <p class="text-gray-400 text-sm">Learns your team's coding standards, preferred patterns, and architectural decisions. Gets smarter the more you work with it.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dysruption Integration -->
+            <div class="mb-8 border-l-2 border-neon-cyan pl-6">
+                <h4 class="font-mono text-lg text-neon-cyan mb-4">// DYSRUPTION INTEGRATION</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    Dysruption is building Neural Codex as the cognitive core of our platform—the intelligence layer that powers everything else. Our vision:
+                </p>
+                <ul class="space-y-3 text-gray-400">
+                    <li class="flex items-start gap-3">
+                        <span class="text-neon-cyan mt-1">▸</span>
+                        <span><strong class="text-white">Issue-to-PR Pipeline:</strong> Assign GitHub issues directly to Neural Codex. It analyzes, plans, implements, tests, and opens pull requests autonomously.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-neon-cyan mt-1">▸</span>
+                        <span><strong class="text-white">Multi-Model Intelligence:</strong> Choose from frontier models (Claude, GPT-5, Gemini) optimized for different tasks—speed, accuracy, or cost.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-neon-cyan mt-1">▸</span>
+                        <span><strong class="text-white">Human-in-the-Loop Control:</strong> Configure approval gates for sensitive operations. Full transparency with step-by-step execution traces.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-neon-cyan mt-1">▸</span>
+                        <span><strong class="text-white">Continuous Evolution:</strong> Neural Codex learns from every interaction, building institutional knowledge that persists across your organization.</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-8">
+                <div class="text-center p-4 bg-void/50 border border-neon-cyan/20 rounded">
+                    <p class="font-mono text-3xl text-neon-cyan font-bold">94%</p>
+                    <p class="text-gray-400 text-xs mt-1">Developer Productivity Increase*</p>
+                </div>
+                <div class="text-center p-4 bg-void/50 border border-neon-cyan/20 rounded">
+                    <p class="font-mono text-3xl text-neon-cyan font-bold">13.8%</p>
+                    <p class="text-gray-400 text-xs mt-1">SWE-Bench Resolution Rate</p>
+                </div>
+                <div class="text-center p-4 bg-void/50 border border-neon-cyan/20 rounded">
+                    <p class="font-mono text-3xl text-neon-cyan font-bold">1000+</p>
+                    <p class="text-gray-400 text-xs mt-1">Decisions Per Task</p>
+                </div>
+            </div>
+            <p class="text-gray-600 text-xs mb-8">*Based on industry benchmarks from GitHub Copilot enterprise deployments</p>
+            
+            <!-- CTA -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="closeModal('neural-codex-modal')" class="font-mono text-sm px-6 py-3 bg-neon-cyan text-void font-bold hover:bg-neon-cyan/80 transition-colors">
+                    REQUEST EARLY ACCESS
+                </button>
+                <button onclick="closeModal('neural-codex-modal')" class="font-mono text-sm px-6 py-3 border border-gray-600 text-gray-400 hover:border-neon-cyan hover:text-neon-cyan transition-colors">
+                    CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========================================== -->
+    <!-- MODAL: Hyper-Grid Infra Deep Dive -->
+    <!-- ========================================== -->
+    <div id="hyper-grid-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-center justify-center bg-void/95 backdrop-blur-lg overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-grid-title">
+        <div class="modal-content relative max-w-4xl mx-auto my-8 p-8 md:p-12 bg-surface-dark border border-neon-magenta/30 rounded-lg shadow-2xl shadow-neon-magenta/10">
+            <!-- Close Button -->
+            <button onclick="closeModal('hyper-grid-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-neon-magenta transition-colors" aria-label="Close modal">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <!-- Header -->
+            <div class="flex items-center gap-4 mb-8">
+                <svg class="w-16 h-16 text-neon-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                <div>
+                    <p class="font-mono text-neon-magenta text-sm">&gt; PLATFORM_MODULE_02</p>
+                    <h3 id="modal-grid-title" class="font-mono text-3xl md:text-4xl font-bold text-white">HYPER-GRID INFRA</h3>
+                </div>
+            </div>
+            
+            <!-- What It Is -->
+            <div class="mb-8">
+                <h4 class="font-mono text-lg text-neon-magenta mb-4">// WHAT IS HYPER-GRID INFRA?</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    Hyper-Grid Infra is <span class="text-neon-magenta font-semibold">autonomous infrastructure</span>—systems that don't just respond to failures, but anticipate them. Built on the principles of Kubernetes self-healing, serverless computing, and predictive AI, Hyper-Grid eliminates the operational burden that slows down engineering teams.
+                </p>
+                <p class="text-gray-400 leading-relaxed">
+                    Traditional infrastructure requires constant babysitting—scaling decisions, failure recovery, resource optimization. Hyper-Grid handles all of this automatically, using machine learning to predict load patterns, detect anomalies before they become outages, and optimize costs in real-time.
+                </p>
+            </div>
+            
+            <!-- Core Capabilities -->
+            <div class="mb-8">
+                <h4 class="font-mono text-lg text-neon-magenta mb-4">// CORE CAPABILITIES</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded">
+                        <h5 class="font-mono text-white font-bold mb-2">Self-Healing Architecture</h5>
+                        <p class="text-gray-400 text-sm">Automatic failure detection, pod replacement, and service recovery. If a container crashes, a new one spawns instantly—zero human intervention required.</p>
+                    </div>
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded">
+                        <h5 class="font-mono text-white font-bold mb-2">Predictive Scaling</h5>
+                        <p class="text-gray-400 text-sm">ML models analyze traffic patterns to scale resources before demand spikes. Never pay for idle capacity, never suffer from under-provisioning.</p>
+                    </div>
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded">
+                        <h5 class="font-mono text-white font-bold mb-2">Zero-Downtime Deployments</h5>
+                        <p class="text-gray-400 text-sm">Rolling updates, blue-green deployments, and automatic rollback on failure. Ship with confidence, any time of day.</p>
+                    </div>
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded">
+                        <h5 class="font-mono text-white font-bold mb-2">Edge-Native Distribution</h5>
+                        <p class="text-gray-400 text-sm">Workloads automatically distribute to edge locations closest to users. Latency measured in single-digit milliseconds, globally.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Architecture Diagram (ASCII Style) -->
+            <div class="mb-8 bg-void/70 border border-neon-magenta/20 rounded p-6 font-mono text-xs text-gray-400 overflow-x-auto">
+                <pre class="text-center">
+┌─────────────────────────────────────────────────────────────────┐
+│                    HYPER-GRID CONTROL PLANE                     │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
+│  │<span class="text-neon-magenta">PREDICTOR</span>│  │<span class="text-neon-magenta">SCHEDULER</span>│  │<span class="text-neon-magenta">HEALER</span>  │  │<span class="text-neon-magenta">COST OPTIMIZER</span>  │ │
+│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────────┬─────────┘ │
+│       │             │             │                 │           │
+│       └─────────────┴──────┬──────┴─────────────────┘           │
+│                            ▼                                    │
+│              ┌─────────────────────────┐                        │
+│              │   WORKLOAD ORCHESTRATOR │                        │
+│              └────────────┬────────────┘                        │
+└───────────────────────────┼─────────────────────────────────────┘
+                            ▼
+    ┌───────────┬───────────┬───────────┬───────────┐
+    │  <span class="text-neon-cyan">EDGE-US</span>  │  <span class="text-neon-cyan">EDGE-EU</span>  │ <span class="text-neon-cyan">EDGE-ASIA</span> │  <span class="text-neon-cyan">EDGE-*</span>   │
+    └───────────┴───────────┴───────────┴───────────┘
+                </pre>
+            </div>
+            
+            <!-- Dysruption Integration -->
+            <div class="mb-8 border-l-2 border-neon-magenta pl-6">
+                <h4 class="font-mono text-lg text-neon-magenta mb-4">// DYSRUPTION INTEGRATION</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    Hyper-Grid is the foundation layer of the Dysruption platform—the substrate on which Neural Codex and Synthetic Agents operate. Our roadmap:
+                </p>
+                <ul class="space-y-3 text-gray-400">
+                    <li class="flex items-start gap-3">
+                        <span class="text-neon-magenta mt-1">▸</span>
+                        <span><strong class="text-white">One-Click Deployments:</strong> Push code, Hyper-Grid handles containerization, orchestration, and global distribution automatically.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-neon-magenta mt-1">▸</span>
+                        <span><strong class="text-white">AI-Powered Incident Response:</strong> When anomalies are detected, Synthetic Agents automatically investigate, diagnose, and remediate.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-neon-magenta mt-1">▸</span>
+                        <span><strong class="text-white">Cost Intelligence:</strong> Real-time recommendations for rightsizing, spot instance utilization, and reserved capacity planning.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-neon-magenta mt-1">▸</span>
+                        <span><strong class="text-white">Compliance Autopilot:</strong> Automatic enforcement of security policies, audit logging, and regulatory compliance (SOC2, HIPAA, GDPR).</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-8">
+                <div class="text-center p-4 bg-void/50 border border-neon-magenta/20 rounded">
+                    <p class="font-mono text-3xl text-neon-magenta font-bold">99.99%</p>
+                    <p class="text-gray-400 text-xs mt-1">Target Uptime SLA</p>
+                </div>
+                <div class="text-center p-4 bg-void/50 border border-neon-magenta/20 rounded">
+                    <p class="font-mono text-3xl text-neon-magenta font-bold">&lt;50ms</p>
+                    <p class="text-gray-400 text-xs mt-1">Global P99 Latency</p>
+                </div>
+                <div class="text-center p-4 bg-void/50 border border-neon-magenta/20 rounded">
+                    <p class="font-mono text-3xl text-neon-magenta font-bold">40%</p>
+                    <p class="text-gray-400 text-xs mt-1">Avg. Cost Reduction</p>
+                </div>
+            </div>
+            
+            <!-- CTA -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="closeModal('hyper-grid-modal')" class="font-mono text-sm px-6 py-3 bg-neon-magenta text-void font-bold hover:bg-neon-magenta/80 transition-colors">
+                    REQUEST EARLY ACCESS
+                </button>
+                <button onclick="closeModal('hyper-grid-modal')" class="font-mono text-sm px-6 py-3 border border-gray-600 text-gray-400 hover:border-neon-magenta hover:text-neon-magenta transition-colors">
+                    CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========================================== -->
+    <!-- MODAL: Synthetic Agents Deep Dive -->
+    <!-- ========================================== -->
+    <div id="synthetic-agents-modal" class="modal-overlay fixed inset-0 z-[100] hidden items-center justify-center bg-void/95 backdrop-blur-lg overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-agents-title">
+        <div class="modal-content relative max-w-4xl mx-auto my-8 p-8 md:p-12 bg-surface-dark border border-terminal-green/30 rounded-lg shadow-2xl shadow-terminal-green/10">
+            <!-- Close Button -->
+            <button onclick="closeModal('synthetic-agents-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-terminal-green transition-colors" aria-label="Close modal">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <!-- Header -->
+            <div class="flex items-center gap-4 mb-8">
+                <svg class="w-16 h-16 text-terminal-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <div>
+                    <p class="font-mono text-terminal-green text-sm">&gt; PLATFORM_MODULE_03</p>
+                    <h3 id="modal-agents-title" class="font-mono text-3xl md:text-4xl font-bold text-white">SYNTHETIC AGENTS</h3>
+                </div>
+            </div>
+            
+            <!-- What It Is -->
+            <div class="mb-8">
+                <h4 class="font-mono text-lg text-terminal-green mb-4">// WHAT ARE SYNTHETIC AGENTS?</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    Synthetic Agents are <span class="text-terminal-green font-semibold">autonomous AI workers</span>—digital teammates that can reason, plan, execute multi-step workflows, and learn from outcomes. Unlike simple automation scripts, these agents possess long-term memory, can use tools, browse the web, and collaborate with humans and other agents.
+                </p>
+                <p class="text-gray-400 leading-relaxed">
+                    Built on advances in agentic AI frameworks like LangGraph, Synthetic Agents implement sophisticated cognitive architectures: ReAct (Reason + Act), Plan-and-Execute, and multi-agent collaboration patterns. They don't just follow instructions—they understand goals and figure out how to achieve them.
+                </p>
+            </div>
+            
+            <!-- Agent Types -->
+            <div class="mb-8">
+                <h4 class="font-mono text-lg text-terminal-green mb-4">// AGENT ARCHETYPES</h4>
+                <div class="space-y-4">
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded flex gap-4">
+                        <div class="text-terminal-green font-mono text-2xl">01</div>
+                        <div>
+                            <h5 class="font-mono text-white font-bold mb-1">Research Agents</h5>
+                            <p class="text-gray-400 text-sm">Scour the web, analyze documents, synthesize information, and deliver actionable intelligence. Perfect for market research, competitive analysis, and knowledge gathering.</p>
+                        </div>
+                    </div>
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded flex gap-4">
+                        <div class="text-terminal-green font-mono text-2xl">02</div>
+                        <div>
+                            <h5 class="font-mono text-white font-bold mb-1">Operations Agents</h5>
+                            <p class="text-gray-400 text-sm">Monitor systems, respond to alerts, execute runbooks, and handle incident response. The tireless SRE that never sleeps.</p>
+                        </div>
+                    </div>
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded flex gap-4">
+                        <div class="text-terminal-green font-mono text-2xl">03</div>
+                        <div>
+                            <h5 class="font-mono text-white font-bold mb-1">Data Agents</h5>
+                            <p class="text-gray-400 text-sm">ETL pipelines, data quality monitoring, report generation, and anomaly detection. Your data team's always-on assistant.</p>
+                        </div>
+                    </div>
+                    <div class="bg-void/50 border border-surface-dark p-4 rounded flex gap-4">
+                        <div class="text-terminal-green font-mono text-2xl">04</div>
+                        <div>
+                            <h5 class="font-mono text-white font-bold mb-1">Customer Agents</h5>
+                            <p class="text-gray-400 text-sm">Handle support tickets, answer questions, route complex issues to humans, and continuously learn from interactions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cognitive Architecture -->
+            <div class="mb-8">
+                <h4 class="font-mono text-lg text-terminal-green mb-4">// COGNITIVE ARCHITECTURES</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="bg-void/50 border border-terminal-green/20 p-4 rounded">
+                        <p class="font-mono text-terminal-green font-bold mb-2">ReAct</p>
+                        <p class="text-gray-400 text-xs">Reason → Act → Observe → Repeat. Interleaved thinking and action.</p>
+                    </div>
+                    <div class="bg-void/50 border border-terminal-green/20 p-4 rounded">
+                        <p class="font-mono text-terminal-green font-bold mb-2">Plan-and-Execute</p>
+                        <p class="text-gray-400 text-xs">Create comprehensive plan, then execute steps. Best for complex tasks.</p>
+                    </div>
+                    <div class="bg-void/50 border border-terminal-green/20 p-4 rounded">
+                        <p class="font-mono text-terminal-green font-bold mb-2">Multi-Agent</p>
+                        <p class="text-gray-400 text-xs">Specialized agents collaborate. Divide and conquer at scale.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dysruption Integration -->
+            <div class="mb-8 border-l-2 border-terminal-green pl-6">
+                <h4 class="font-mono text-lg text-terminal-green mb-4">// DYSRUPTION INTEGRATION</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    Synthetic Agents are the workforce of the Dysruption platform—autonomous entities that operate on your behalf across every aspect of software development and operations:
+                </p>
+                <ul class="space-y-3 text-gray-400">
+                    <li class="flex items-start gap-3">
+                        <span class="text-terminal-green mt-1">▸</span>
+                        <span><strong class="text-white">Human-in-the-Loop Control:</strong> Configure approval gates for sensitive actions. Agents propose, you approve. Full audit trails for compliance.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-terminal-green mt-1">▸</span>
+                        <span><strong class="text-white">Tool Ecosystem:</strong> Connect to your existing tools via MCP (Model Context Protocol). Slack, Jira, GitHub, databases, APIs—agents can use them all.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-terminal-green mt-1">▸</span>
+                        <span><strong class="text-white">Observability Built-In:</strong> End-to-end trace visibility, tool selection logging, cost/latency tracking. Debug agent behavior like you debug code.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-terminal-green mt-1">▸</span>
+                        <span><strong class="text-white">Custom Agent Builder:</strong> Define your own agent types with custom prompts, tool access, and behavioral rules. No code required.</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Use Case Example -->
+            <div class="mb-8 bg-void/70 border border-terminal-green/20 rounded p-6">
+                <h4 class="font-mono text-lg text-terminal-green mb-4">// EXAMPLE: AUTONOMOUS ISSUE RESOLUTION</h4>
+                <div class="font-mono text-sm space-y-2">
+                    <p class="text-gray-400"><span class="text-terminal-green">1.</span> Alert received: "API response time degraded"</p>
+                    <p class="text-gray-400"><span class="text-terminal-green">2.</span> Agent queries monitoring dashboards, logs, recent deployments</p>
+                    <p class="text-gray-400"><span class="text-terminal-green">3.</span> Agent identifies: new deployment caused N+1 query regression</p>
+                    <p class="text-gray-400"><span class="text-terminal-green">4.</span> Agent drafts fix, runs tests in sandbox environment</p>
+                    <p class="text-gray-400"><span class="text-terminal-green">5.</span> Agent opens PR with detailed analysis and fix</p>
+                    <p class="text-gray-400"><span class="text-terminal-green">6.</span> Human approves → Agent merges and monitors rollout</p>
+                    <p class="text-white mt-4">Total time: <span class="text-terminal-green">12 minutes</span> (vs. 2-4 hours manual)</p>
+                </div>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-8">
+                <div class="text-center p-4 bg-void/50 border border-terminal-green/20 rounded">
+                    <p class="font-mono text-3xl text-terminal-green font-bold">24/7</p>
+                    <p class="text-gray-400 text-xs mt-1">Always-On Operation</p>
+                </div>
+                <div class="text-center p-4 bg-void/50 border border-terminal-green/20 rounded">
+                    <p class="font-mono text-3xl text-terminal-green font-bold">1000s</p>
+                    <p class="text-gray-400 text-xs mt-1">Decisions Per Workflow</p>
+                </div>
+                <div class="text-center p-4 bg-void/50 border border-terminal-green/20 rounded">
+                    <p class="font-mono text-3xl text-terminal-green font-bold">∞</p>
+                    <p class="text-gray-400 text-xs mt-1">Parallel Agent Instances</p>
+                </div>
+            </div>
+            
+            <!-- CTA -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="closeModal('synthetic-agents-modal')" class="font-mono text-sm px-6 py-3 bg-terminal-green text-void font-bold hover:bg-terminal-green/80 transition-colors">
+                    REQUEST EARLY ACCESS
+                </button>
+                <button onclick="closeModal('synthetic-agents-modal')" class="font-mono text-sm px-6 py-3 border border-gray-600 text-gray-400 hover:border-terminal-green hover:text-terminal-green transition-colors">
+                    CLOSE
+                </button>
+            </div>
+        </div>
         </div>
     </section>
     
@@ -576,6 +1013,70 @@
         <p>LONG: -122.4194°</p>
         <p>QUANTUM_LOCK: ACTIVE</p>
     </div>
+    
+    <!-- Modal JavaScript -->
+    <script>
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                
+                // Focus trap - focus the first focusable element
+                const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (focusable.length) focusable[0].focus();
+                
+                // Add escape key listener
+                document.addEventListener('keydown', handleEscapeKey);
+            }
+        }
+        
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+                
+                // Remove escape key listener
+                document.removeEventListener('keydown', handleEscapeKey);
+            }
+        }
+        
+        function handleEscapeKey(e) {
+            if (e.key === 'Escape') {
+                const openModals = document.querySelectorAll('.modal-overlay:not(.hidden)');
+                openModals.forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        }
+        
+        // Close modal when clicking outside content
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
